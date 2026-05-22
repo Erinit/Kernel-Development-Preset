@@ -37,6 +37,8 @@ yay -S i686-elf-binutils-bin i686-elf-gcc-bin
 
 ![Hierarchy](images/Screenshot%20From%202026-05-22%2017-37-23.png)
 
+the fact that there are two object files and a alien binary file they will appear once you follow the build n run section successfully
+
 ## Build n Run Cmd
 
 LOCK IN HERE
