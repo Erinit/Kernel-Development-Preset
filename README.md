@@ -26,12 +26,7 @@ yay -S i686-elf-binutils-bin i686-elf-gcc-bin
 
 ## Project Structure
 
-.
-├── Makefile        # Automated build system
-└── src/
-    ├── boot.s      # Assembly entry point (Multiboot header)
-    ├── kernel.c    # Kernel main logic
-    └── linker.ld   # Memory layout definition
+![Hierarchy](images/Screenshot%20From%202026-05-22%2017-37-23.png)
 
 ## Build n Run Cmd
 
