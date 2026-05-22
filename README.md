@@ -1,5 +1,6 @@
 # BareBones from OSdev forum
 
+link -> https://wiki.osdev.org/Bare_Bones
 A minimal, freestanding 32-bit x86 kernel built from scratch.
 
 ## Project Overview
