@@ -129,19 +129,32 @@ void print_pyramid(int height) {
 /* The true entry point for your C code */
 void kernel_main(void) 
 {
-    // 1. Clear the screen and set up the background
-    terminal_initialize();
+    // // 1. Clear the screen and set up the background
+    // terminal_initialize();
 
-    // 2. Print our text
-    terminal_writestring("Hello, kernel World!\n");
-    terminal_writestring("I have successfully survived the Triple Fault.\n");
-    terminal_writestring("Here is my pattern:\n\n");
+    // // 2. Print our text
+    // terminal_writestring("Hello, kernel World!\n");
+    // terminal_writestring("I have successfully survived the Triple Fault.\n");
+    // terminal_writestring("Here is my pattern:\n\n");
 
-    // 3. Draw the pyramid
-    print_pyramid(5);
+    // // 3. Draw the pyramid
+    // print_pyramid(5);
 
-    /* 4. CPU TRAP: Halt forever so we don't crash into garbage memory */
-    for (;;) {
-        asm volatile ("hlt");
+    // /* 4. CPU TRAP: Halt forever so we don't crash into garbage memory */
+    // for (;;) {
+    //     asm volatile ("hlt");
+    // }
+    gdt_install();
+
+    // 2. The GDT Test: Trigger a breakpoint exception
+    // If the GDT is correct, the CPU will jump to the interrupt handler
+    // If the GDT is invalid, the CPU will triple fault (reboot)
+
+    // 3. Print a success message if we survived
+    const char *str = "GDT Installed and Tested!";
+    char *vga = (char*)0xB8000;
+    for(int i = 0; str[i] != '\0'; i++) {
+        vga[i*2] = str[i];
+        vga[i*2+1] = 0x0F; // White text on black
     }
 }
