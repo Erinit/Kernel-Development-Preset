@@ -1,6 +1,7 @@
 #include <stdbool.h>
 #include <stddef.h>
 #include <stdint.h>
+#include <io.h>
 #include "gdt.h"
 #include "idt.h"
 
@@ -26,6 +27,8 @@ enum vga_color {
 #define VGA_WIDTH   80
 #define VGA_HEIGHT  25
 #define VGA_MEMORY  0xB8000 
+
+extern void terminal_putchar(char c);
 
 size_t terminal_row;
 size_t terminal_column;
@@ -62,30 +65,7 @@ void terminal_putentryat(char c, uint8_t color, size_t x, size_t y)
     terminal_buffer[index] = vga_entry(c, color);
 }
 
-void terminal_putchar(char c) {
-    if (c == '\n') {
-        terminal_column = 0;
-        terminal_row++;
-    } else {
-        terminal_putentryat(c, terminal_color, terminal_column, terminal_row);
-        if (++terminal_column == VGA_WIDTH) {
-            terminal_column = 0;
-            terminal_row++;
-        }
-    }
 
-    if (terminal_row == VGA_HEIGHT) {
-        for (size_t y = 1; y < VGA_HEIGHT; y++) {
-            for (size_t x = 0; x < VGA_WIDTH; x++) {
-                terminal_buffer[(y - 1) * VGA_WIDTH + x] = terminal_buffer[y * VGA_WIDTH + x];
-            }
-        }
-        for (size_t x = 0; x < VGA_WIDTH; x++) {
-            terminal_buffer[(VGA_HEIGHT - 1) * VGA_WIDTH + x] = vga_entry(' ', terminal_color);
-        }
-        terminal_row = VGA_HEIGHT - 1;
-    }
-}
 
 void terminal_write(const char* data, size_t size) 
 {
@@ -122,16 +102,22 @@ void kernel_main(void)
 {
     gdt_install();
     idt_install();
-
-    const char *str = "GDT Installed and Tested!";
-    char *vga = (char*)0xB8000;
-    for(int i = 0; str[i] != '\0'; i++) {
-        vga[i*2] = str[i];
-        vga[i*2+1] = 0x0F;
-    }
-
-    __asm__ volatile ("div %0" : : "a"(0));
     
+    // Mask the timer, keep keyboard active
+    outb(0x21, 0xFD); 
+    outb(0xA1, 0xFF); 
+
+    // --- THE FIX IS HERE ---
+    const char *str = "OS Ready - Press a Key\n> ";
+    
+    // Use your terminal function instead of raw memory manipulation!
+    for(int i = 0; str[i] != '\0'; i++) {
+        terminal_putchar(str[i]);
+    }
+    
+    // Now the CPU is listening
+    __asm__ volatile ("sti"); 
+
     for(;;) {
         __asm__ volatile ("hlt");
     }

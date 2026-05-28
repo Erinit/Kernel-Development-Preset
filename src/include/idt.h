@@ -16,5 +16,6 @@ struct idt_ptr {
 
 void idt_set_gate(unsigned char num, unsigned long base, unsigned short sel, unsigned char flags);
 void idt_install();
+void pic_remap(void);
 
 #endif
