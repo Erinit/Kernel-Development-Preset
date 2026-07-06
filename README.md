@@ -1,5 +1,8 @@
-# BareBones from OSdev forum
+# DISCLAIMER
+NEVER AND I MEAN DO NOT RUN THE flash.sh FILE if you have multiple drives
+because that shell script is hardcoded for sdb(2nd drive) we use that to flash the iso image for pen drive and check carefully what label your pendrive is in it will be in form of sdX where X could be either b c or idk whatever but be carefull because it can wipe out your existing OS if not carefull with the name
 
+# BareBones from OSdev forum
 link -> https://wiki.osdev.org/Bare_Bones
 A minimal, freestanding 32-bit x86 kernel built from scratch.
 
