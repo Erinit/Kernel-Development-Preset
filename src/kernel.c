@@ -26,7 +26,7 @@ void kernel_main(void)
     }
 
     // 5. Define our output string
-    const char* message = "Hello World! Welcome back to the absolute basics.";
+    const char* message = "Hello World!!!";
 
     // 6. Output our string directly to the very first row of the screen
     for (size_t i = 0; message[i] != '\0'; i++) {
