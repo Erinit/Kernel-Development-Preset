@@ -1,5 +1,4 @@
 #!/bin/bash
-# Nuclear Option: Pure Legacy GRUB Installation for TetrisOS
 
 # Unmount and prep the drive (Assuming /dev/sdb - ALWAYS DOUBLE CHECK!)
 sudo umount /dev/sdb*
