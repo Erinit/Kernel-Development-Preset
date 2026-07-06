@@ -13,7 +13,7 @@ To build this kernel, you must use an `i686-elf` cross-compiler toolchain. This 
 NOTE: the following commands will work with arch based distro only 
 
 
-## Installation (Arch/EndeavourOS)
+## Installation (Arch Based)
 ```bash
 # Install essential build tools
 sudo pacman -S --needed base-devel
