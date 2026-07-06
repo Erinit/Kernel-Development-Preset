@@ -61,7 +61,7 @@ sudo dnf install -y cross-binutils-common i686-elf-binutils i686-elf-gcc
 
 ## Project Structure
 
-![Hierarchy](images/Screenshot%20From%202026-07-04%2015-13-15.png)
+![Hierarchy](images/HUHUHAHA.png)
 
 the fact that there are two object files and a alien binary file they will appear once you follow the build n run section successfully
 
