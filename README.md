@@ -10,10 +10,9 @@ its a monolithic kernel designed to run on bare-metal hardware. It implements th
 
 ## Prerequisites
 To build this kernel, you must use an `i686-elf` cross-compiler toolchain. This prevents the compiler from linking against host-specific libraries (like `glibc`), which do not exist in a bare-metal environment.
-NOTE: the following commands will work with arch based distro only 
 
 
-## Installation (Arch Based)
+## Installation Arch Linux / EndeavourOS / Manjaro
 ```bash
 # Install essential build tools
 sudo pacman -S --needed base-devel
@@ -21,15 +20,41 @@ sudo pacman -S --needed base-devel
 # Install pre-built cross-compiler toolchain
 yay -S i686-elf-binutils-bin i686-elf-gcc-bin
 
+#Install the emulator
+sudo pacman -S qemu-desktop
 
+```
+## Installation Debian / Ubuntu / Linux Mint / Pop!_OS
+```bash
+
+# 1. Update your local registry mirrors
+sudo apt update
+
+# 2. Install essential build structures and x86 hardware emulators
+sudo apt install -y build-essential git make qemu-system-x86
+
+# 3. Install the bare-metal freestanding cross-compiler toolchain
+sudo apt install -y gcc-i686-linux-gnu binutils-i686-linux-gnu
 
 ```
 
+## Installtion Fedora / RHEL
+```bash
+# 1. Install foundational compilation suites and QEMU x86 emulation systems
+sudo dnf groupinstall -y "Development Tools"
+
+sudo dnf install -y git qemu-system-x86
+
+# 2. Install the target cross-compiler tools
+sudo dnf install -y cross-binutils-common i686-elf-binutils i686-elf-gcc
+```
+
+
 ## Steps for you my friend
 
-* i hope that cross compiler shit is installed successfully now we need to do is to make a dir `*osdev*` or `*doorsOS*` whatever
+* i hope that cross compiler shit is installed successfully now we need to do is to make a dir `*osdev*` or `*barebones*` whatever
 
-* make a src dir and then add three files `*boot.s*`, `*kernel.c*` and `*linked.ld*`
+* make a src dir and then add three files `*boot.s*`, `*kernel.c*` and `*linker.ld*`
 
 * why the frick i m even typing i have uploaded the whole shit lol(i forgor)
 
@@ -42,13 +67,14 @@ the fact that there are two object files and a alien binary file they will appea
 
 ## Build n Run Cmd
 
-LOCK IN HERE
+LOCK IN HERE (all the cmds to compile the files are in the makefile)
 
 | Command | Action |
 | :--- | :--- |
 | `make` | Compiles source files and links them into `myos.bin` |
 | `make run` | Builds the project and launches QEMU with debug logs |
 | `make clean` | Removes object files and binary outputs |
+| `make clean && make run` | just use this |
 
 
 ## Debugging
@@ -62,6 +88,7 @@ LOCK IN HERE
 [Dunning-Kruger](https://en.wikipedia.org/wiki/Dunning–Kruger_effect)
 
 ![LOL](images/Screenshot%20From%202026-05-22%2017-56-15.png)
+foreshadowing
 
 ![is_this_even_possible](images/Screenshot%20From%202026-07-04%2013-06-43.png)
 someday we will reach this stage
