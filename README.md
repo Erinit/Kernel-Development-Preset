@@ -58,20 +58,6 @@ LOCK IN HERE
 * **`-d int,cpu_reset`**: Enables logging for hardware interrupts and CPU reset events.
 * **`-no-reboot`**: Halts the emulator on a Triple Fault, allowing you to examine the register dump provided by QEMU.
 
-
-## Roadmap
-
-
-* [x] Toolchain Setup
-
-* [x] Multiboot Header Integration
-
-* [x] VGA Text Driver
-
-* [ ] Interrupt Descriptor Table (IDT) (might need to sacrifice someone)
-
-* [ ] Keyboard Driver (i have two braincells)
-
 ## lol
 [Dunning-Kruger](https://en.wikipedia.org/wiki/Dunning–Kruger_effect)
 
