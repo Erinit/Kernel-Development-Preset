@@ -64,3 +64,4 @@ LOCK IN HERE
 ![LOL](images/Screenshot%20From%202026-05-22%2017-56-15.png)
 
 ![is_this_even_possible](images/Screenshot%20From%202026-07-04%2013-06-43.png)
+someday we will reach this stage
